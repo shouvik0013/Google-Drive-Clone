@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/signup.css">
+    <title>Signup</title>
+  </head>
+  <body>
+    <form class="signup-form" action="/signup" method="POST" novalidate>
+      <div class="form-control">
+        <label for="email">E-Mail:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value="<%= oldContent.email %>"
+        />
+      </div>
+      <div class="form-control">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value="<%= oldContent.password %>"
+        />
+      </div>
+      <div class="form-control">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          value="<%= oldContent.confirmPassword %>"
+        />
+      </div>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button type="submit">Signup</button>
+    </form>
+  </body>
+</html>

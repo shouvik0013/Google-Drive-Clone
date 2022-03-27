@@ -1,0 +1,13 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-rows: auto 1fr;
+  row-gap: 30px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}

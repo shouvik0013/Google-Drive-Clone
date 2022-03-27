@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <title>Upload Files</title>
+  </head>
+  <body>
+    <div class="container">
+      <form
+        class="product-form"
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="form-control">
+          <label for="user-files"
+            >Choose Files:
+            <input type="file" name="user-files" multiple="multiple" />
+          </label>
+          <br />
+        </div>
+        <input type="hidden" name="parentId" value="<%=parentFolderId%>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+  </body>
+</html>

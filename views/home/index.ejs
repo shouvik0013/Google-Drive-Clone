@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/file.css" />
+    <title>Home</title>
+  </head>
+  <body>
+    <nav class="home-nav">
+      <a href="/upload/<%=folderId%>">Upload File</a>
+      <a href="/home">Home</a>
+      <% if (isAuthenticated) {%>
+      <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+        <button type="submit">Logout</button>
+      </form>
+      <% } %>
+    </nav>
+    <h2>Welcome to Google Drive Clone</h2>
+    <div class="main">
+      <div class="current-files">
+        <h3>Files</h3>
+        <% if (userFiles.length > 0) {%>
+        <ul>
+          <% for (let fileData of userFiles) {%>
+          <li class="file-info">
+            <span><%= fileData.file_id.name %></span>
+            <a href="/download/<%= fileData.file_id._id%>">Download</a>
+          </li>
+
+          <% } %>
+        </ul>
+        <% } else {%>
+        <h3>No files found.</h3>
+        <% } %>
+      </div>
+
+      <div class="current-folders">
+        <h3>Folders</h3>
+        <% if (childFolders.length > 0) { %>
+        <ul>
+          <% for(let ch of childFolders) { %>
+          <li class="folder-info">
+            <span><%= ch.child_folder_id.name %></span>
+            <a href="/home/<%=ch.child_folder_id._id%>">Open</a>
+          </li>
+          <% } %>
+        </ul>
+        <% } else { %>
+        <h4>No folders found</h4>
+        <% } %>
+      </div>
+
+      <div class="folder-form">
+        <form action="/upload/new-folder" method="post">
+          <label for="folder-input"
+            >Create new folder:
+            <input type="text" id="folder-input" name="folderName" />
+            <input type="hidden" name="parentId" value="<%=folderId%>" />
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>" />
+            <button type="submit">Create Folder</button>
+          </label>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
